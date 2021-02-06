@@ -106,8 +106,6 @@ public class AwesomeProjectApplication {
             lessonRepository.save(lessonFlying);
             lessonRepository.save(lessonCareOfMagicalCreatures);
             lessonRepository.save(lessonDefenseAgainstTheDarkArts);
-
-            System.out.println(studentRepository.getStudentsThatAttendedLesson(lessonFlying.getId()));
         };
     }
 

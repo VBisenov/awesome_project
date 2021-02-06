@@ -1,5 +1,6 @@
 package com.example.awesome_project.controller;
 
+import com.example.awesome_project.model.Student;
 import com.example.awesome_project.service.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,27 +26,38 @@ public class StudentController {
         this.utilService = utilService;
     }
 
-    @GetMapping(value = "/get-by-lesson")
+    @GetMapping(value = "/test")
     public String test() {
         return "HELLO WORLD";
     }
 
-    @GetMapping(value = "/get-by-lesson", params = {"discipline_name"})
-    public List<String> getStudentsThatAttendsLessonByDisciplineName(
-            @RequestParam(name = "discipline_name")
-                    String disciplineName) {
-        System.out.println("LOG: Get students that attend lesson by lesson name: " + disciplineName);
-        return new ArrayList<String>();
-    }
-
-    @GetMapping(value = "/get-by-lesson", params = {"discipline_name", "date_time"})
-    public List<String> getStudentsThatAttendsLessonByDisciplineName(
+    @GetMapping(params = {"discipline_name", "date_time"})
+    public List<Student> getStudentsThatAttendsLessonByDisciplineName(
             @RequestParam(name = "discipline_name")
                     String disciplineName,
             @RequestParam(name = "date_time")
                     long dateTime) {
-        System.out.println("LOG: Get students that attend lesson by lesson name: " + disciplineName +
-                " for date " + Instant.ofEpochMilli(dateTime).atZone(ZoneId.systemDefault()).toLocalDateTime());
         return this.utilService.getStudentsThatAttendedLesson(disciplineName, dateTime);
+    }
+
+
+    @GetMapping(params = "faculty_name")
+    public List<Student> getStudentsByFacultyName(
+            @RequestParam(name = "faculty_name")
+                    String facultyName) {
+        return this.utilService.getStudentsByFacultyName(facultyName);
+    }
+
+
+    @GetMapping(value = "/quantity", params = "faculty_name")
+    public long getStudentsNumByFacultyName(
+            @RequestParam(name = "faculty_name")
+                    String facultyName) {
+        return this.utilService.getStudentsNumByFacultyName(facultyName);
+    }
+
+    @GetMapping(value = "/quantity")
+    public long getStudentsNumByFacultyName() {
+        return this.utilService.getStudentsNum();
     }
 }

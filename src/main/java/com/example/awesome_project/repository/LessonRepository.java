@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
     @Query(nativeQuery = true,
-    value = "SELECT lesson_id FROM lesson \n" +
-            "INNER JOIN discipline ON discipline.discipline_id = lesson.discipline_id\n" +
-            "WHERE discipline.name = ?1 AND lesson.date_time = ?2")
-    public long getLessonIdByDisciplineNameAndDate(String name, long date);
+    value = "SELECT * FROM lesson l " +
+            "INNER JOIN discipline d ON d.discipline_id = l.discipline_id " +
+            "WHERE d.name = ?1 AND l.date_time = ?2")
+    public Lesson getLessonByDisciplineNameAndDate(String name, long dateTime);
 }

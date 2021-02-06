@@ -1,7 +1,9 @@
 package com.example.awesome_project.service;
 
+import com.example.awesome_project.model.Discipline;
 import com.example.awesome_project.model.Lesson;
 import com.example.awesome_project.model.Student;
+import com.example.awesome_project.repository.DisciplineRepository;
 import com.example.awesome_project.repository.LessonRepository;
 import com.example.awesome_project.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,15 @@ import java.util.List;
 public class UtilService {
     private final StudentRepository studentRepository;
     private final LessonRepository lessonRepository;
+    private final DisciplineRepository disciplineRepository;
 
     @Autowired
     public UtilService(StudentRepository studentRepository,
-                       LessonRepository lessonRepository) {
+                       LessonRepository lessonRepository,
+                       DisciplineRepository disciplineRepository) {
         this.studentRepository = studentRepository;
         this.lessonRepository = lessonRepository;
+        this.disciplineRepository = disciplineRepository;
     }
 
     public List<Student> getStudentsThatAttendedLesson(String disciplineName, long dateTime) {
@@ -48,5 +53,10 @@ public class UtilService {
     public long getStudentsNum() {
         System.out.println("LOG: GET students num in Hogwarts...");
         return this.studentRepository.getStudentsNum();
+    }
+
+    public List<Discipline> getDisciplineByTeacher(String teacherName) {
+        System.out.println("LOG: Get discipline by teacher " + teacherName);
+        return this.disciplineRepository.getDisciplineByTeacher(teacherName);
     }
 }

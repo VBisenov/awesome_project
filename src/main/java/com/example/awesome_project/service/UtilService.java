@@ -31,32 +31,95 @@ public class UtilService {
     public List<Student> getStudentsThatAttendedLesson(String disciplineName, long dateTime) {
         System.out.println("LOG: Get students that attend lesson by discipline name: " + disciplineName +
                 " for date " + Instant.ofEpochMilli(dateTime).atZone(ZoneId.systemDefault()).toLocalDateTime());
-        return studentRepository.getStudentsThatAttendedLesson(disciplineName, dateTime);
+        List<Student> result = studentRepository.getStudentsThatAttendedLesson(disciplineName, dateTime);
+        System.out.println("LOG: Get students that attend lesson by discipline name result: " + result);
+        return result;
     }
 
     public Lesson getLessonByDisciplineNameAndDate(String disciplineName, long dateTime) {
         System.out.println("LOG: Get lesson by discipline name: " + disciplineName +
                 " for date " + Instant.ofEpochMilli(dateTime).atZone(ZoneId.systemDefault()).toLocalDateTime());
-        return this.lessonRepository.getLessonByDisciplineNameAndDate(disciplineName, dateTime);
+        Lesson result =  this.lessonRepository.getLessonByDisciplineNameAndDate(disciplineName, dateTime);
+        System.out.println("LOG: Get lesson by discipline name: " + disciplineName +
+                " for date " + Instant.ofEpochMilli(dateTime).atZone(ZoneId.systemDefault()).toLocalDateTime() +
+                " result: " + result);
+        return result;
     }
 
     public List<Student> getStudentsByFacultyName(String facultyName) {
         System.out.println("LOG : GET students by faculty name " + facultyName);
-        return this.studentRepository.getStudentsByFacultyName(facultyName);
+        List<Student> result = this.studentRepository.getStudentsByFacultyName(facultyName);
+        System.out.println("LOG : GET students by faculty name result: " + result);
+        return result;
+    }
+
+    public List<Student> getStudentsByName(String studentName) {
+        System.out.println("LOG : GET students by name like " + studentName);
+        List<Student> result = this.studentRepository.getStudentsByName(studentName);
+        System.out.println("LOG : GOT students by name like " + studentName + " result : " + result);
+        return result;
     }
 
     public long getStudentsNumByFacultyName(String facultyName) {
         System.out.println("LOG : GET students by faculty name " + facultyName);
-        return this.studentRepository.getStudentsNumByFacultyName(facultyName);
+        long result = this.studentRepository.getStudentsNumByFacultyName(facultyName);
+        System.out.println("LOG : GET students by faculty name result: " + result);
+        return result;
     }
 
     public long getStudentsNum() {
         System.out.println("LOG: GET students num in Hogwarts...");
-        return this.studentRepository.getStudentsNum();
+        long result = this.studentRepository.getStudentsNum();
+        System.out.println("LOG: GET students num in Hogwarts result: " + result);
+        return result;
     }
 
     public List<Discipline> getDisciplineByTeacher(String teacherName) {
         System.out.println("LOG: Get discipline by teacher " + teacherName);
-        return this.disciplineRepository.getDisciplineByTeacher(teacherName);
+        List<Discipline> result = this.disciplineRepository.getDisciplineByTeacher(teacherName);
+        System.out.println("LOG: Get discipline by teacher result: " + result);
+        return result;
+    }
+
+    public List<String> getDisciplinesByTeachersMapping() {
+        System.out.println("LOG: Get disciplines by teachers mapping...");
+        List<String> result = this.disciplineRepository.getDisciplineByTeacherMap();
+        System.out.println("LOG: Get disciplines by teachers mapping result: " + result);
+        return result;
+    }
+
+    public List<String> getDisciplinesNumPerTeacher() {
+        System.out.println("LOG: Get lessons number per teacher...");
+        List<String> result = this.disciplineRepository.getLessonNumberPerTeacher();
+        System.out.println("LOG: Get lessons number per teacher result: " + result);
+        return result;
+    }
+
+    public List<String> getDisciplinesNumByTeacherName(String name) {
+        System.out.println("LOG: Get disciplines num by teacher " + name);
+        List<String> result = this.disciplineRepository.getDisciplinesNumByTeacherName(name);
+        System.out.println("LOG: Get disciplines num per teacher result: " + result);
+        return result;
+    }
+
+    public List<String> getDisciplinesNumByTeacherId(long id) {
+        System.out.println("LOG: Get disciplines num by teacher with Id: " + id);
+        List<String> result = this.disciplineRepository.getDisciplinesNumByTeacherId(id);
+        System.out.println("LOG: Get disciplines num per teacher result: " + result);
+        return result;
+    }
+
+    public List<String> getLessonsPerTeacher() {
+        System.out.println("LOG: Get lessons per teacher");
+        List<String> result = this.lessonRepository.getLessonPerTeacher();
+        System.out.println("LOG: Get lessons number per teacher result: " + result);
+        return result;
+    }
+
+    public List<String> getLessonsByTeacher(long teacherId) {
+        System.out.println("LOG: Get lessons by teacher with Id: " + teacherId);
+        List<String> result = this.lessonRepository.getLessonByTeacher(teacherId);
+        System.out.println("LOG: Get lessons number per teacher result: " + result);
+        return result;
     }
 }

@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/lesson")
+@RequestMapping("/lessons")
 public class LessonController {
 
-    private UtilService utilService;
+    private final UtilService utilService;
 
     @Autowired
     public LessonController(UtilService utilService) {
@@ -26,5 +28,17 @@ public class LessonController {
             @RequestParam(name = "date_time")
                     long dateTime) {
         return this.utilService.getLessonByDisciplineNameAndDate(disciplineName, dateTime);
+    }
+
+    @GetMapping()
+    public List<String> getLessonsPerTeacher() {
+        return this.utilService.getLessonsPerTeacher();
+    }
+
+    @GetMapping(params = "teacher_id")
+    public List<String> getLessonsPerTeacher(
+            @RequestParam(name = "teacher_id")
+                    long teacherId) {
+        return this.utilService.getLessonsByTeacher(teacherId);
     }
 }

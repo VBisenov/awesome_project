@@ -30,6 +30,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     public List<Student> getStudentsByFacultyName(String facultyName);
 
     @Query(nativeQuery = true,
+    value = "SELECT * FROM student s " +
+            "WHERE s.full_name LIKE %?1%")
+    public List<Student> getStudentsByName(String name);
+
+    @Query(nativeQuery = true,
     value = "SELECT COUNT(*) FROM student s " +
             "WHERE s.faculty_id = " +
             "(" +

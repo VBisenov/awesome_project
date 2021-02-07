@@ -40,6 +40,12 @@ public class StudentController {
         return this.utilService.getStudentsThatAttendedLesson(disciplineName, dateTime);
     }
 
+    @GetMapping(params = {"student_name"})
+    public List<Student> getStudentsByName(
+            @RequestParam(name = "student_name")
+                    String studentName) {
+        return this.utilService.getStudentsByName(studentName);
+    }
 
     @GetMapping(params = "faculty_name")
     public List<Student> getStudentsByFacultyName(

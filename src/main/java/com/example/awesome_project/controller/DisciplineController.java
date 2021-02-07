@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/discipline")
+@RequestMapping("/disciplines")
 public class DisciplineController {
 
-    private UtilService utilService;
+    private final UtilService utilService;
 
     @Autowired
     public DisciplineController(UtilService utilService) {
@@ -29,5 +30,10 @@ public class DisciplineController {
             @RequestParam("teacher_name")
                     String teacherName) {
         return this.utilService.getDisciplineByTeacher(teacherName);
+    }
+
+    @GetMapping("/all")
+    public List<String> getDisciplinesByTeachersMapping() {
+        return this.utilService.getDisciplinesByTeachersMapping();
     }
 }

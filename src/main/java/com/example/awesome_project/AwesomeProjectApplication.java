@@ -76,11 +76,13 @@ public class AwesomeProjectApplication {
 
             Discipline disciplineFlying = new Discipline("Flying");
             Discipline disciplineCareOfMagicalCreatures = new Discipline("Care of Magical Creatures");
-            Discipline disciplineDefenseAgainstTheDarkArts = new Discipline("Defense Against the Dark Arts ");
+            Discipline disciplineDefenseAgainstTheDarkArts = new Discipline("Defense Against the Dark Arts");
+            Discipline disciplinePotions = new Discipline("Potions");
 
             disciplineRepository.save(disciplineFlying);
             disciplineRepository.save(disciplineCareOfMagicalCreatures);
             disciplineRepository.save(disciplineDefenseAgainstTheDarkArts);
+            disciplineRepository.save(disciplinePotions);
 
             Attendance attendanceFlying =
                     new Attendance(Arrays.asList(studentHarryPotter, studentRonWeasley, studentHermioneGranger,
@@ -89,10 +91,14 @@ public class AwesomeProjectApplication {
                     new Attendance(Arrays.asList(studentHannahAbbot, studentSusanBones, studentJustinFinchFletchley));
             Attendance attendanceDefenseAgainstTheDarkArts =
                     new Attendance(Arrays.asList(studentTerryBoot, studentMandyBrocklehurst, studentMichaelCorner));
+            Attendance attendancePotions =
+                    new Attendance(Arrays.asList(studentHarryPotter, studentRonWeasley, studentHermioneGranger,
+                            studentDracoMalfoy, studentGregoryGoyle));
 
             attendanceRepository.save(attendanceFlying);
             attendanceRepository.save(attendanceCareOfMagicalCreatures);
             attendanceRepository.save(attendanceDefenseAgainstTheDarkArts);
+            attendanceRepository.save(attendancePotions);
 
             Lesson lessonFlying =
                     new Lesson(disciplineFlying, System.currentTimeMillis(), attendanceFlying, teacherRolandaHooch);
@@ -102,10 +108,13 @@ public class AwesomeProjectApplication {
             Lesson lessonDefenseAgainstTheDarkArts =
                     new Lesson(disciplineDefenseAgainstTheDarkArts, System.currentTimeMillis() - 86400000, attendanceDefenseAgainstTheDarkArts,
                             teacherSeverusSnape);
+            Lesson lessonPotions =
+                    new Lesson(disciplinePotions, System.currentTimeMillis(), attendancePotions, teacherSeverusSnape);
 
             lessonRepository.save(lessonFlying);
             lessonRepository.save(lessonCareOfMagicalCreatures);
             lessonRepository.save(lessonDefenseAgainstTheDarkArts);
+            lessonRepository.save(lessonPotions);
         };
     }
 

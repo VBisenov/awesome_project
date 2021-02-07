@@ -12,7 +12,7 @@ public class Attendance {
     @Column(name = "attendance_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    @OneToMany
+    @ManyToMany
     private List<Student> students;
 
     public Attendance(List<Student> students) {

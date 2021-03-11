@@ -1,0 +1,10 @@
+memory model broken into smaller parts:
+1. Young generation - all new objects. When fills up, minor GC occurs
+2. Old Generation - for all objects there is threshold, when this threshold is reached, object moved here
+[?] How threshold resolved?
+- Old generation memory contains the objects that are long-lived and survived after many rounds of Minor GC.
+XX:SurvivorRatio used for providing ratio of Eden space, for example, if young generation size is 10m
+and VM switch is –XX:SurvivorRatio=2 then 5m will be reserved for Eden space and 2.5m each for both the Survivor spaces.
+The default value is 8
+XX:NewRatio used for providing ratio of old/new generation sizes. The default value is 2
+3. Permanent generation - JVM metadata for the runtime classes and application methods

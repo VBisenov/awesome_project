@@ -25,6 +25,10 @@ public class Student {
         this.faculty = faculty;
     }
 
+    public Student(String fullName) {
+        this.fullName = fullName;
+    }
+
     public Student() {
     }
 }

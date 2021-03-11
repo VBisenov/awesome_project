@@ -1,0 +1,7 @@
+1. OOM throws when heap is filled up
+2. StackOverflowError throws when stack is filled up
+[?] How is happening memory allocation for heap and stack?
+- The size of the heap can be specified using –Xms VM option.
+The heap can be of fixed size or variable size depending on the garbage collection strategy.
+Maximum heap size can be set using –Xmx option. By default, the maximum heap size is set to 64 MB.
+The default maximum size of non-heap memory is 64 MB. This can be changed using –XX:MaxPermSize VM option.

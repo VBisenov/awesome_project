@@ -9,9 +9,9 @@ import com.example.awesome_project.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 public class LoginController {
@@ -33,7 +33,7 @@ public class LoginController {
         } catch (UserAlreadyExistException ex) {
             return new ResponseEntity<>("User already exist", HttpStatus.CONFLICT);
         } catch (NullPointerException ex) {
-            return new ResponseEntity<>("Login body contain null fields", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -46,7 +46,18 @@ public class LoginController {
         } catch (UserDoesNotExistException ex) {
             return new ResponseEntity<>("User does not exist or cannot be accessed", HttpStatus.FORBIDDEN);
         } catch (NullPointerException ex) {
-            return new ResponseEntity<>("Login body contain null fields", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/logout")
+    public ResponseEntity<String> logout(
+            @RequestParam(name = "userId")
+                    UUID userId) {
+        try {
+            return ResponseEntity.ok(loginService.logout(userId));
+        } catch (IllegalArgumentException ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

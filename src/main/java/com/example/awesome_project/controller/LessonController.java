@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/lessons")
@@ -38,7 +39,7 @@ public class LessonController {
     @GetMapping(params = "teacher_id")
     public List<String> getLessonsPerTeacher(
             @RequestParam(name = "teacher_id")
-                    long teacherId) {
+                    UUID teacherId) {
         return this.utilService.getLessonsByTeacher(teacherId);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/teachers")
@@ -35,7 +36,7 @@ public class TeacherController {
     @GetMapping(value = "/discipline-num-by-teacher", params = "id")
     public List<String> getDisciplinesNumPerTeacher(
             @RequestParam("id")
-                    long id) {
+                    UUID id) {
         return utilService.getDisciplinesNumByTeacherId(id);
     }
 }

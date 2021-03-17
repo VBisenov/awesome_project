@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class LoginService {
 
@@ -54,6 +56,14 @@ public class LoginService {
         }
         //todo return only token
         return tokenDTO.token;
+    }
+
+    public String logout(UUID userId) throws IllegalArgumentException {
+        if (userId == null) {
+            throw new IllegalArgumentException("userId must not be null!");
+        }
+        tokenRepository.deleteAllByStudentId(userId);
+        return "Token deletion request passed";
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UtilService {
@@ -102,7 +103,7 @@ public class UtilService {
         return result;
     }
 
-    public List<String> getDisciplinesNumByTeacherId(long id) {
+    public List<String> getDisciplinesNumByTeacherId(UUID id) {
         System.out.println("LOG: Get disciplines num by teacher with Id: " + id);
         List<String> result = this.disciplineRepository.getDisciplinesNumByTeacherId(id);
         System.out.println("LOG: Get disciplines num per teacher result: " + result);
@@ -116,7 +117,7 @@ public class UtilService {
         return result;
     }
 
-    public List<String> getLessonsByTeacher(long teacherId) {
+    public List<String> getLessonsByTeacher(UUID teacherId) {
         System.out.println("LOG: Get lessons by teacher with Id: " + teacherId);
         List<String> result = this.lessonRepository.getLessonByTeacher(teacherId);
         System.out.println("LOG: Get lessons number per teacher result: " + result);

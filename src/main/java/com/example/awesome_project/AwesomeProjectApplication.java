@@ -7,11 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class AwesomeProjectApplication {
 
     public static void main(String[] args) {

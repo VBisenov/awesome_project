@@ -1,0 +1,8 @@
+JSR-250 - Java Specification Request, includes @PostConstruct, @PreDestroy, @Resource from Spring
+init method  equivalent of @PostConstruct
+destroy method equivalent @PreDestroy
+@Resource - autowiring by-name:
+   @Resource(name = "perfectBean")
+   public void setSomething(Bean bean){
+      this.bean = bean;
+   }
